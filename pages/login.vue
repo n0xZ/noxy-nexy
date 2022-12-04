@@ -19,7 +19,7 @@
 	const client = useSupabaseAuthClient()
 
 	useHead({ title: 'Nexy - Iniciar sesión' })
-   
+
 	const loginViaEmail = async () => {
 		const result = loginSchema.safeParse(inputModels.value)
 		isSubmitting.value = true
@@ -55,6 +55,7 @@
 					type="email"
 					name="email"
 					placeholder="janedoe132@email.com"
+					v-model="inputModels.email"
 				/>
 				<span class="c-red-500 h-6">{{
 					errors.fieldErrors?.formErrors.fieldErrors.email
@@ -70,6 +71,7 @@
 					type="password"
 					name="password"
 					placeholder="janedoe123*"
+					v-model="inputModels.password"
 					:disabled="isSubmitting"
 				/>
 				<span class="c-red-500 h-6">{{
