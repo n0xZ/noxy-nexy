@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@headlessui/vue': ^1.7.4
+  '@iconify-json/carbon': ^1.1.11
   '@nuxtjs/supabase': ^0.3.0
   '@supabase/supabase-js': ^2.1.1
   '@unocss/nuxt': ^0.47.4
@@ -16,6 +17,7 @@ dependencies:
   zod: 3.19.1
 
 devDependencies:
+  '@iconify-json/carbon': 1.1.11
   nuxt: 3.0.0
 
 packages:
@@ -336,9 +338,14 @@ packages:
       vue: ^3.2.0
     dev: false
 
+  /@iconify-json/carbon/1.1.11:
+    resolution: {integrity: sha512-IHkHSNmTM6q6b8DuKSzd+AEMYPZywSxcb+37kZU7ywtcwsGen3aVEvWFykopIWjjwj3xdZ/5UdwJRqhZDQMlNg==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: true
+
   /@iconify/types/2.0.0:
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
-    dev: false
 
   /@iconify/utils/2.0.2:
     resolution: {integrity: sha512-13B3wJxDLmSNBEIEpKleKSkJVQgdAy9ra3Xsu233i/5qD5yXBGhpOFxTB/k8cqme0xVsMKBPV5vbvq9MgQlX+w==}
