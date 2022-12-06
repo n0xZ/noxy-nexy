@@ -11,17 +11,14 @@
 	<div class="h-full w-full">
 		<header class="p-5">
 			<nav
-				class="flex flex-row items-center justify-between container mx-auto max-w-xl"
+				class="flex flex-row items-center justify-between container mx-auto max-w-xl font-inter text-lg"
 			>
 				<h1><NuxtLink to="/home">Nexy</NuxtLink></h1>
-				<ul class="flex flex-row items-center space-x-5">
-					<li><NuxtLink to="/"></NuxtLink></li>
-					<li><NuxtLink to="/"></NuxtLink></li>
-				</ul>
+
 				<MobileMenu :user="user" :sign-out="signOut" />
 			</nav>
 		</header>
-		<main class="min-h-screen h-full">
+		<main class="min-h-screen h-full font-roboto">
 			<slot></slot>
 		</main>
 	</div>
