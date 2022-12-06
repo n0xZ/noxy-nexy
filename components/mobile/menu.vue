@@ -9,14 +9,15 @@
 </script>
 
 <template>
-	<Menu as="div" className="xl:hidden lg:hidden relative inline-block text-left">
+	<Menu as="div" className=" relative inline-block text-left">
 		<MenuButton
-			class="w-full justify-center rounded-md text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+			class="w-full flex flex-row justify-center items-center space-x-2 rounded-md text-sm font-medium c-neutral-500 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
 		>
 			<img
 				:src="props.user?.user_metadata.avatar_url"
-				class="rounded-full w-12 h-12"
+				class="rounded-full w-6 h-6"
 			/>
+			<p>{{ user?.user_metadata.username }}</p>
 		</MenuButton>
 
 		<transition
