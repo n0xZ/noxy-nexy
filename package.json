@@ -9,7 +9,8 @@
   },
   "devDependencies": {
     "@iconify-json/carbon": "^1.1.11",
-    "nuxt": "3.0.0"
+    "nuxt": "3.0.0",
+    "unocss": "^0.47.5"
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.4",
