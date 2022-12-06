@@ -43,7 +43,7 @@
 </script>
 
 <template>
-	<main class="min-h-screen h-full grid place-items-center">
+	<main class="min-h-screen h-full grid place-items-center font-roboto">
 		<form
 			class="flex flex-col justify-center space-y-4 container w-full mx-auto max-w-xl"
 			@submit.prevent="loginViaEmail"
@@ -51,7 +51,7 @@
 			<aside class="flex flex-col justify-center space-y-3 max-w-xl w-full">
 				<label class="font-bold" for="email">Correo electrónico</label>
 				<input
-					class="px-5 py-4 rounded-md outline-none border-2 border-dark-600 bg-transparent"
+					class="px-5 py-4 rounded-lg outline-none border-2 border-neutral-100 bg-transparent"
 					type="email"
 					name="email"
 					placeholder="janedoe132@email.com"
@@ -67,7 +67,7 @@
 			<aside class="flex flex-col justify-center space-y-3 max-w-xl w-full">
 				<label class="font-bold" for="password">Contraseña</label>
 				<input
-					class="px-5 py-4 rounded-md outline-none border-2 border-dark-600 bg-transparent"
+					class="px-5 py-4 rounded-md outline-none border-2 border-neutral-100 bg-transparent"
 					type="password"
 					name="password"
 					placeholder="janedoe123*"
@@ -82,8 +82,8 @@
 			</aside>
 			<button
 				:class="`px-5 py-3 rounded-lg  w-full max-w-xl ${
-					isSubmitting ? 'bg-amber-500' : 'bg-amber-300'
-				} duration-100 ease-in-out mb-10 c-neutral-800 font-bold`"
+					isSubmitting ? 'bg-fuchsia-600' : 'bg-fuchsia-500'
+				} duration-100 ease-in-out mb-10 c-neutral-50  font-bold `"
 				type="submit"
 				:disabled="isSubmitting"
 			>

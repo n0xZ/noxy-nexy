@@ -4,7 +4,7 @@
 <template>
 	<header class="p-5">
 		<nav
-			class="flex flex-row items-center justify-between container mx-auto max-w-xl font-inter"
+			class="flex flex-row items-center justify-between container mx-auto max-w-xl font-inter text-lg"
 		>
 			<h1><NuxtLink to="/">Nexy</NuxtLink></h1>
 			<ul class="flex flex-row items-center space-x-4">

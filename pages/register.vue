@@ -51,7 +51,7 @@
 </script>
 
 <template>
-	<main class="min-h-screen h-full grid place-items-center">
+	<main class="min-h-screen h-full grid place-items-center font-roboto">
 		<section v-if="needsEmailVerification">
 			<p>Por favor, revise su correo para confirmar su cuenta.</p>
 		</section>
@@ -109,7 +109,7 @@
 			</aside>
 			<button
 				:class="`px-5 py-3 rounded-lg  w-full max-w-xl ${
-					isSubmitting ? 'bg-amber-500' : 'bg-amber-300'
+					isSubmitting ? 'bg-fuchsia-500' : 'bg-fuchsia-300'
 				} duration-100 ease-in-out mb-10 c-neutral-800 font-bold`"
 				type="submit"
 				:disabled="isSubmitting"
