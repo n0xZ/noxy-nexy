@@ -33,13 +33,24 @@
 			>
 				<div className="px-1 py-1 ">
 					<MenuItem v-slot="active">
+						<NuxtLink
+							:class="` ${
+								active ? 'c-neutral-500' : 'c-neutral-900'
+							} group flex w-full items-center rounded-md px-2 py-2 text-sm space-x-2 `"
+							to="/home/projects/create"
+						>
+							<div class="i-carbon-task-add h-4 w-4"></div>
+							<span>Crear proyecto</span></NuxtLink
+						>
+					</MenuItem>
+					<MenuItem v-slot="active">
 						<button
 							@click="props.signOut"
 							:class="` ${
-								active ? 'bg-fuchsia-500 text-white' : 'text-gray-900'
+								active ? 'c-neutral-500' : 'c-neutral-900'
 							} group flex w-full items-center rounded-md px-2 py-2 text-sm space-x-2  `"
 						>
-							<div class="i-carbon-logout h-6 w-6"></div>
+							<div class="i-carbon-logout h-4 w-4"></div>
 
 							<span>Cerrar sesión</span>
 						</button>
