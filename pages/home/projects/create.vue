@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	import { PostgrestError, PostgrestResponse } from '@supabase/supabase-js'
 	import { z } from 'zod'
-	import { Project } from '~~/types'
+	import { Project } from '~/types'
 
 	const createProjectSchema = z.object({
 		title: z.string().min(5, { message: 'Campo requerido' }),
@@ -14,7 +14,8 @@
 		apiError: PostgrestError
 	}
 
-	const client = useSupabaseClient()
+	const client = useSupabaseClient<Project>()
+	const user = useSupabaseUser()
 	const projectInputModels = ref<CreateProjectFields>({
 		description: '',
 		title: '',
@@ -26,18 +27,28 @@
 		const formResult = createProjectSchema.safeParse(projectInputModels.value)
 		isSubmitting.value = true
 		if (formResult.success) {
-			const { data, error } = await client
-				.from('project')
-				.insert([formResult.data])
+			const newProject: Partial<Project> = {
+				...formResult.data,
+				userId: user.value?.id,
+				hasFinished: false,
+			}
+			const { data, error } = await client.from('project').insert([newProject])
+			console.log(data)
+			if (error) errors.value.apiError = error
+			isSubmitting.value = false
+		} else {
+			errors.value.fieldErrors=formResult.error
+			isSubmitting.value = false
 		}
 	}
 </script>
 
 <template>
 	<form
-		class="flex flex-col justify-center space-y-4 container w-full mx-auto max-w-xl"
+		class="flex flex-col justify-center space-y-4 container w-full mx-auto max-w-2xl mt-20"
+		@submit.prevent="onSubmit"
 	>
-		<aside class="flex flex-col justify-center space-y-3 max-w-xl w-full">
+		<aside class="flex flex-col justify-center space-y-3 max-w-2xl w-full">
 			<label class="font-bold" for="title">Titulo del proyecto</label>
 			<input
 				class="px-5 py-4 rounded-lg outline-none border-2 border-neutral-100 bg-transparent"
@@ -75,7 +86,10 @@
 			type="submit"
 			:disabled="isSubmitting"
 		>
-			Crear nuevo proyecto
+			{{ isSubmitting ? 'Creando...' : 'Crear nuevo proyecto' }}
 		</button>
+		<span class="h-6 c-red-500">{{
+			errors.apiError ? errors.apiError.message : null
+		}}</span>
 	</form>
 </template>
