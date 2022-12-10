@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import { PostgrestError, PostgrestResponse } from '@supabase/supabase-js'
+	import { PostgrestError } from '@supabase/supabase-js'
 	import { z } from 'zod'
 	import { Project } from '~/types'
 
@@ -15,7 +15,7 @@
 	}
 
 	const client = useSupabaseClient<Project>()
-	const user = useSupabaseUser()
+	const user = useUser()
 	const projectInputModels = ref<CreateProjectFields>({
 		description: '',
 		title: '',
@@ -33,11 +33,11 @@
 				hasFinished: false,
 			}
 			const { data, error } = await client.from('project').insert([newProject])
-			console.log(data)
 			if (error) errors.value.apiError = error
 			isSubmitting.value = false
+			projectInputModels.value = {} as CreateProjectFields
 		} else {
-			errors.value.fieldErrors=formResult.error
+			errors.value.fieldErrors = formResult.error
 			isSubmitting.value = false
 		}
 	}
@@ -89,7 +89,7 @@
 			{{ isSubmitting ? 'Creando...' : 'Crear nuevo proyecto' }}
 		</button>
 		<span class="h-6 c-red-500">{{
-			errors.apiError ? errors.apiError.message : null
+			errors.apiError ? errors.apiError.details : null
 		}}</span>
 	</form>
 </template>
