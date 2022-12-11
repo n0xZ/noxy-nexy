@@ -6,8 +6,6 @@
 		await client.auth.signOut()
 	}
 	client.auth.onAuthStateChange((ev, sess) => {
-      console.log(sess)
-      console.log(ev)
 		if (ev === 'SIGNED_OUT' || !sess) router.push('/login')
 	})
 </script>
