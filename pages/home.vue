@@ -1,13 +1,11 @@
 <script setup lang="ts">
-	const user = useSupabaseUser()
+	const user = useUser()
 	const client = useSupabaseAuthClient()
 	const router = useRouter()
 	const signOut = async () => {
 		await client.auth.signOut()
 	}
 	client.auth.onAuthStateChange((ev, sess) => {
-      console.log(sess)
-      console.log(ev)
 		if (ev === 'SIGNED_OUT' || !sess) router.push('/login')
 	})
 </script>
@@ -23,7 +21,9 @@
 				<NavMenu :user="user" :sign-out="signOut" />
 			</nav>
 		</header>
-		<main class="min-h-screen h-full font-roboto container mx-auto max-w-xl">
+		<main
+			class="min-h-screen h-full w-full font-roboto container mx-auto max-w-2xl mt-12"
+		>
 			<NuxtPage />
 		</main>
 	</div>
