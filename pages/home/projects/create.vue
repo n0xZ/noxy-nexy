@@ -41,7 +41,7 @@
 			const { data, error } = await client.from('project').insert([newProject])
 			if (error) errors.value.apiError = error
 			isSubmitting.value = false
-			projectInputModels.value = {} as CreateProjectFields
+			projectInputModels.value = { title: '', description: '', markdown: '' }
 		} else {
 			errors.value.fieldErrors = formResult.error
 			isSubmitting.value = false
@@ -102,9 +102,11 @@
 			}}</span>
 		</aside>
 		<aside class="flex flex-col justify-center space-y-3 max-w-2xl w-full">
-			<label class="font-medium" for="description">Vista previa del contenido</label>
+			<label class="font-medium" for="description"
+				>Vista previa del contenido</label
+			>
 			<div
-				class=" min-h-64 h-full w-full rounded-lg outline-none text-base  prose prose-fuchsia"
+				class="min-h-64 h-full w-full rounded-lg outline-none text-base prose prose-fuchsia"
 				v-html="parsedMarkdown"
 			></div>
 		</aside>
