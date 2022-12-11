@@ -1,4 +1,10 @@
-import { defineConfig, presetUno, presetIcons, presetWebFonts } from 'unocss'
+import {
+	defineConfig,
+	presetUno,
+	presetIcons,
+	presetWebFonts,
+	presetTypography,
+} from 'unocss'
 
 export default defineConfig({
 	presets: [
@@ -11,5 +17,6 @@ export default defineConfig({
 				roboto: 'Roboto',
 			},
 		}),
+		presetTypography(),
 	],
 })
