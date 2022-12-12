@@ -25,11 +25,10 @@
 	const needsEmailVerification = ref(false)
 	const router = useRouter()
 	const client = useSupabaseAuthClient()
-	const user = useSupabaseUser()
+
+	definePageMeta({ middleware: ['auth'] })
 	useHead({ title: 'Nexy - Registrarse' })
-	watchEffect(() => {
-		if (user.value) router.push('/home')
-	})
+
 	const register = async () => {
 		const result = registerSchema.safeParse(inputModels.value)
 		isSubmitting.value = true
@@ -58,11 +57,11 @@
 			<p>Por favor, revise su correo para confirmar su cuenta.</p>
 		</section>
 		<form
-			class="flex flex-col justify-center space-y-4 container w-full mx-auto max-w-xl"
+			class="flex flex-col justify-center space-y-4 container w-full mx-auto max-w-2xl xl:p-0 p-2"
 			@submit.prevent="register"
 			v-else
 		>
-			<h2>Unete ya a Nexy!</h2>
+			<h2 class="text-center text-2xl font-semibolds">Unete ya a Nexy!</h2>
 			<aside class="flex flex-col justify-center space-y-3 max-w-xl w-full">
 				<label class="font-bold" for="username">Nombre de usuario</label>
 				<input
@@ -119,6 +118,9 @@
 			>
 				{{ isSubmitting ? 'Creando...' : 'Crear cuenta ' }}
 			</button>
+			<span class="c-red-500 h-6">{{
+				errors.authErrors ? errors.authErrors.message : null
+			}}</span>
 			<NuxtLink to="/login" class="text-center underline"
 				>Ya poseo una cuenta</NuxtLink
 			>
