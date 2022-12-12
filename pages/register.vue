@@ -25,9 +25,11 @@
 	const needsEmailVerification = ref(false)
 	const router = useRouter()
 	const client = useSupabaseAuthClient()
-
+	const user = useSupabaseUser()
 	useHead({ title: 'Nexy - Registrarse' })
-
+	watchEffect(() => {
+		if (user.value) router.push('/home')
+	})
 	const register = async () => {
 		const result = registerSchema.safeParse(inputModels.value)
 		isSubmitting.value = true
@@ -60,10 +62,11 @@
 			@submit.prevent="register"
 			v-else
 		>
+			<h2>Unete ya a Nexy!</h2>
 			<aside class="flex flex-col justify-center space-y-3 max-w-xl w-full">
 				<label class="font-bold" for="username">Nombre de usuario</label>
 				<input
-					class="px-5 py-4 rounded-md outline-none border-2 border-dark-600 bg-transparent"
+					class="px-5 py-4 rounded-md outline-none bg-sky-50"
 					type="text"
 					name="username"
 					placeholder="janedoe132"
@@ -78,7 +81,7 @@
 			<aside class="flex flex-col justify-center space-y-3 max-w-xl w-full">
 				<label class="font-bold" for="email">Correo electrónico</label>
 				<input
-					class="px-5 py-4 rounded-md outline-none border-2 border-dark-600 bg-transparent"
+					class="px-5 py-4 rounded-md outline-none bg-sky-50"
 					type="email"
 					name="email"
 					placeholder="janedoe132@email.com"
@@ -94,7 +97,7 @@
 			<aside class="flex flex-col justify-center space-y-3 max-w-xl w-full">
 				<label class="font-bold" for="password">Contraseña</label>
 				<input
-					class="px-5 py-4 rounded-md outline-none border-2 border-dark-600 bg-transparent"
+					class="px-5 py-4 rounded-md outline-none bg-sky-50"
 					type="password"
 					name="password"
 					placeholder="janedoe123*"

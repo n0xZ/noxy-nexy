@@ -17,9 +17,12 @@
 	const isSubmitting = ref(false)
 	const router = useRouter()
 	const client = useSupabaseAuthClient()
+	const user = useSupabaseUser()
 
 	useHead({ title: 'Nexy - Iniciar sesión' })
-
+	watchEffect(() => {
+		if (user.value) router.push('/home')
+	})
 	const loginViaEmail = async () => {
 		const result = loginSchema.safeParse(inputModels.value)
 		isSubmitting.value = true
@@ -45,13 +48,13 @@
 <template>
 	<main class="min-h-screen h-full grid place-items-center font-roboto">
 		<form
-			class="flex flex-col justify-center space-y-4 container w-full mx-auto max-w-xl"
+			class="flex flex-col justify-center space-y-4 container w-full mx-auto max-w-xl xl:p-0 p-2"
 			@submit.prevent="loginViaEmail"
 		>
 			<aside class="flex flex-col justify-center space-y-3 max-w-xl w-full">
 				<label class="font-bold" for="email">Correo electrónico</label>
 				<input
-					class="px-5 py-4 rounded-lg outline-none border-2 border-neutral-100 bg-transparent"
+					class="px-5 py-4 rounded-lg outline-none bg-sky-50 "
 					type="email"
 					name="email"
 					placeholder="janedoe132@email.com"
@@ -67,7 +70,7 @@
 			<aside class="flex flex-col justify-center space-y-3 max-w-xl w-full">
 				<label class="font-bold" for="password">Contraseña</label>
 				<input
-					class="px-5 py-4 rounded-md outline-none border-2 border-neutral-100 bg-transparent"
+					class="px-5 py-4 rounded-md outline-none bg-sky-50 "
 					type="password"
 					name="password"
 					placeholder="janedoe123*"

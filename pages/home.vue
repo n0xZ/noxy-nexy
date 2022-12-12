@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	const user = useSupabaseUser()
+	const user = useUser()
 	const client = useSupabaseAuthClient()
 	const router = useRouter()
 	const signOut = async () => {
@@ -21,7 +21,9 @@
 				<NavMenu :user="user" :sign-out="signOut" />
 			</nav>
 		</header>
-		<main class="min-h-screen h-full font-roboto container mx-auto max-w-xl">
+		<main
+			class="min-h-screen h-full w-full font-roboto container mx-auto max-w-2xl mt-12"
+		>
 			<NuxtPage />
 		</main>
 	</div>
