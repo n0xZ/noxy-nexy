@@ -38,8 +38,10 @@
 				userId: user.value?.id,
 				hasFinished: false,
 			}
-			const { data, error } = await client.from('project').insert([newProject])
-			if (error) errors.value.apiError = error
+			const { error } = await client.from('project').insert([newProject])
+			if (error) {
+				errors.value.apiError = error
+			}
 			isSubmitting.value = false
 			projectInputModels.value = { title: '', description: '', markdown: '' }
 		} else {
