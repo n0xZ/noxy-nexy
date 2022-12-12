@@ -8,6 +8,7 @@
 		description?: string
 		markdown?: string
 	}
+	definePageMeta({ middleware: ['protected-content'] })
 	const route = useRoute()
 	const client = useSupabaseClient<Project>
 
@@ -80,7 +81,7 @@
 		/>
 
 		<div
-			class="min-h-64 h-full w-full rounded-lg outline-none text-base "
+			class="min-h-64 h-full w-full rounded-lg outline-none text-base"
 			v-if="!canEditProject"
 			v-html="marked.parse(projectModels.markdown!)"
 		></div>
