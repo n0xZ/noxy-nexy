@@ -12,6 +12,7 @@
 	const client = useSupabaseClient<Project>
 
 	const canEditProject = ref(false)
+	const isEditing = ref(false)
 	const { data: project, pending } = await useAsyncData(
 		'projectById',
 		async () => {
@@ -34,15 +35,26 @@
 	const toggleEdit = () => {
 		canEditProject.value = !canEditProject.value
 	}
+	const editProject = async () => {
+		isEditing.value = true
+		const { data, error } = (await client()
+			.from('project')
+			.update(projectModels.value)
+			.eq('id', route.params.id)) as PostgrestResponse<Project>
+		if (error) throw error
+		isEditing.value = false
+		canEditProject.value = false
+	}
 </script>
 
 <template>
 	<form
-		class="flex flex-col justify-center space-y-5 container mx-auto max-w-xl h-full xl:p-0 p-2"
+		class="flex flex-col justify-center space-y-3 container mx-auto max-w-2xl h-full xl:p-0 p-2 prose prose-fuchsia"
 		v-if="project && !pending"
+		@submit.prevent="editProject"
 	>
 		<aside
-			class="flex flex-rol justify-center items-center space-x-4 w-full mb-3"
+			class="flex flex-rol justify-center items-center space-x-2 max-w-2xl w-full mb-3"
 		>
 			<input
 				:class="`px-5 py-4 rounded-lg outline-none text-2xl w-full ${
@@ -55,28 +67,37 @@
 			/>
 
 			<div
-				class="i-carbon-task-settings h-6 w-6 hover:c-fuchsia-400 duration-100 ease-in-out cursor-pointer"
+				class="i-carbon-task-settings h-7 w-7 hover:c-fuchsia-400 duration-100 ease-in-out cursor-pointer"
 				@click="toggleEdit"
 			></div>
 		</aside>
 
 		<input
-			:class="`px-3 py-4 rounded-lg outline-none ${
+			:class="`px-3 py-4  truncate rounded-lg outline-none ${
 				canEditProject && 'bg-sky-50'
 			} c-neutral-400`"
 			:value="project?.[0].description"
 		/>
 
 		<div
-			class="min-h-64 h-full w-full rounded-lg outline-none text-base prose prose-fuchsia"
+			class="min-h-64 h-full w-full rounded-lg outline-none text-base "
 			v-if="!canEditProject"
-			v-html="marked.parse(project?.[0].markdown)"
+			v-html="marked.parse(projectModels.markdown!)"
 		></div>
 		<textarea
 			v-else-if="project?.[0].markdown"
-			class="min-h-64 h-full w-full rounded-lg outline-none text-base prose prose-fuchsia bg-sky-50"
+			class="min-h-64 h-ful max-w-2xl w-full rounded-lg outline-none text-base prose prose-fuchsia bg-sky-50"
 			v-model="projectModels.markdown"
 		></textarea>
+		<button
+			v-if="canEditProject"
+			:class="`px-5 py-3 rounded-lg  w-full max-w-2xl ${
+				isEditing ? 'bg-fuchsia-600' : 'bg-fuchsia-500'
+			} duration-100 ease-in-out mb-10 c-neutral-50  font-bold `"
+			type="submit"
+		>
+			{{ !isEditing ? 'Editar proyecto' : 'Editando...' }}
+		</button>
 	</form>
 	<section v-else-if="pending"><p>Cargando...</p></section>
 </template>
