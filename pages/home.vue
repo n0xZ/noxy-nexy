@@ -1,12 +1,12 @@
 <script setup lang="ts">
-	const user = useUser()
+	const user = useSupabaseUser()
 	const client = useSupabaseAuthClient()
 	const router = useRouter()
 	const signOut = async () => {
 		await client.auth.signOut()
 	}
 	client.auth.onAuthStateChange((ev, sess) => {
-		if (ev === 'SIGNED_OUT' || !sess) router.push('/login')
+		if (ev === 'SIGNED_OUT' || !sess) router.push('/')
 	})
 </script>
 
