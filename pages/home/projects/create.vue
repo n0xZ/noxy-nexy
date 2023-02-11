@@ -18,7 +18,7 @@
 	}
 
 	const client = useSupabaseClient<Project>()
-	const user = useUser()
+	const user = useSupabaseUser()
 	const projectInputModels = ref<CreateProjectFields>({
 		description: '',
 		title: '',
