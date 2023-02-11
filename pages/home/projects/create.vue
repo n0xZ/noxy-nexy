@@ -113,7 +113,7 @@
 			></div>
 		</aside>
 		<button
-			:class="`px-5 py-3 rounded-lg  w-full max-w-xl ${
+			:class="`px-5 py-3 rounded-lg  w-full max-w-2xl ${
 				isSubmitting ? 'bg-fuchsia-600' : 'bg-fuchsia-500'
 			} duration-100 ease-in-out mb-10 c-neutral-50  font-bold `"
 			type="submit"
