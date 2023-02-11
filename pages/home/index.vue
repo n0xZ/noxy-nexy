@@ -12,7 +12,7 @@
 	} = await useAsyncData('projects', async () => {
 		const loggedUser = await client.auth.getUser()
 		const { data, error } = (await client
-			.from('projects')
+			.from('project')
 			.select('*')
 			.eq('userId', loggedUser.data.user?.id)) as PostgrestResponse<Project>
 	if(error) throw error
