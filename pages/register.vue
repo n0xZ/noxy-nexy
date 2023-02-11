@@ -62,7 +62,7 @@
 			v-else
 		>
 			<h2 class="text-center text-2xl font-semibolds">Unete ya a Nexy!</h2>
-			<aside class="flex flex-col justify-center space-y-3 max-w-xl w-full">
+			<aside class="flex flex-col justify-center space-y-3 max-w-2xl w-full">
 				<label class="font-bold" for="username">Nombre de usuario</label>
 				<input
 					class="px-5 py-4 rounded-md outline-none bg-sky-50"
@@ -77,7 +77,7 @@
 						: null
 				}}</span>
 			</aside>
-			<aside class="flex flex-col justify-center space-y-3 max-w-xl w-full">
+			<aside class="flex flex-col justify-center space-y-3 max-w-2xl w-full">
 				<label class="font-bold" for="email">Correo electrónico</label>
 				<input
 					class="px-5 py-4 rounded-md outline-none bg-sky-50"
@@ -93,7 +93,7 @@
 				}}</span>
 			</aside>
 
-			<aside class="flex flex-col justify-center space-y-3 max-w-xl w-full">
+			<aside class="flex flex-col justify-center space-y-3 max-w-2xl w-full">
 				<label class="font-bold" for="password">Contraseña</label>
 				<input
 					class="px-5 py-4 rounded-md outline-none bg-sky-50"
@@ -110,9 +110,9 @@
 				}}</span>
 			</aside>
 			<button
-				:class="`px-5 py-3 rounded-lg  w-full max-w-xl ${
-					isSubmitting ? 'bg-fuchsia-500' : 'bg-fuchsia-300'
-				} duration-100 ease-in-out mb-10 c-neutral-800 font-bold`"
+				:class="`px-5 py-3 rounded-lg  w-full max-w-2xl ${
+					isSubmitting ? 'bg-fuchsia-600' : 'bg-fuchsia-500'
+				} duration-100 ease-in-out mb-10 c-neutral-50  font-bold `"
 				type="submit"
 				:disabled="isSubmitting"
 			>
